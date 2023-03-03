@@ -301,7 +301,7 @@ async function checkAddonUpdates(initial) {
 	execSync("mkdir -p /repo/sm/ /repo/mm/");
 
 	const [latestMM, latestSM] = await Promise.all([
-		fetch(process.env.MM_URL || `${baseUrlMM}/mmsource-latest-linux`).then(x => x.text()),
+		process.env.MM_VERSION_EXACT && Promise.resolve(process.env.MM_VERSION_EXACT) || fetch(`${baseUrlMM}/mmsource-latest-linux`).then(x => x.text()),
 		fetch(`${baseUrlSM}/sourcemod-latest-linux`).then(x => x.text())
 	]);
 
