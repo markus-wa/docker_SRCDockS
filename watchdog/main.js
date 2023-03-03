@@ -282,7 +282,7 @@ const addons = {
 	latestSM: fs.existsSync("/repo/sm/version") ? fs.readFileSync("/repo/sm/version") : ""
 };
 
-const baseUrlMM = process.env.MM_URL || `https://mms.alliedmods.net/mmsdrop/${process.env.MM_VERSION || "1.10"}`
+const baseUrlMM = `https://mms.alliedmods.net/mmsdrop/${process.env.MM_VERSION || "1.10"}`
 const baseUrlSM = `https://sm.alliedmods.net/smdrop/${process.env.SM_VERSION || "1.10"}`
 
 async function checkAddonUpdates(initial) {
@@ -301,7 +301,7 @@ async function checkAddonUpdates(initial) {
 	execSync("mkdir -p /repo/sm/ /repo/mm/");
 
 	const [latestMM, latestSM] = await Promise.all([
-		fetch(`${baseUrlMM}/mmsource-latest-linux`).then(x => x.text()),
+		fetch(process.env.MM_URL || `${baseUrlMM}/mmsource-latest-linux`).then(x => x.text()),
 		fetch(`${baseUrlSM}/sourcemod-latest-linux`).then(x => x.text())
 	]);
 
