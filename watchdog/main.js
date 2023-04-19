@@ -287,7 +287,7 @@ const baseUrlSM = `https://sm.alliedmods.net/smdrop/${process.env.SM_VERSION || 
 
 async function checkAddonUpdates(initial) {
 	// Check for addon updates up to 2 days after a game update
-	let doCheck = initial || (Date.now() - lastGameUpdate < 1000 * 60 * 60 * 24 * 2);
+	let doCheck = initial || (Date.now() - lastGameUpdate < 1000 * 60 * 60 * 24 * 2) || process.env.MM_VERSION_EXACT;
 
 	if(!doCheck) {
 		// Check if SM / MM even exist at all, if not we should download latest ofc.
