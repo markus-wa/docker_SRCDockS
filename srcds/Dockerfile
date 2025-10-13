@@ -8,7 +8,7 @@ COPY ./srcds/main.cpp ./
 RUN gcc -o main main.cpp
 
 
-FROM debian:bullseye-slim
+FROM registry.gitlab.steamos.cloud/steamrt/sniper/platform
 
 ENV APP_NAME=csgo
 ENV SRCDS_ARGS=""
