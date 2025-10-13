@@ -288,7 +288,9 @@ function checkAppUpdates() {
 		app.updateCheck();
 }
 
-setInterval(checkAppUpdates, 1000 * 60);
+if (process.env.ONESHOT !== 'true') {
+	setInterval(checkAppUpdates, 1000 * 60);
+}
 checkAppUpdates();
 
 const manageMM = !!process.env.MM_VERSION?.trim?.();
@@ -356,7 +358,9 @@ async function checkAddonUpdates(initial) {
 	}
 }
 
-setInterval(checkAddonUpdates, 1000 * 60 * 10);
+if (process.env.ONESHOT !== 'true') {
+	setInterval(checkAddonUpdates, 1000 * 60 * 10);
+}
 checkAddonUpdates(true);
 
 /*
