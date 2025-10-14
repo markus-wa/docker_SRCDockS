@@ -8,7 +8,7 @@ runServerCustom() {
 runServer() {
 	# The order is IMPORTANT. -autoupdate enables auto-restart,
 	# but -norestart removes it again, keeping autoupdate active but using my autorestart instead
-	./game/cs2.sh $SRCDS_ARGS -strictportbind -port ${PORT-27015} -ip ${IP-0.0.0.0} -autoupdate -norestart -nobreakpad
+	./srcds_run $SRCDS_ARGS -strictportbind -port ${PORT-27015} -ip ${IP-0.0.0.0} -autoupdate -norestart -nobreakpad
 }
 
 cd /srcds/srv

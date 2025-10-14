@@ -81,7 +81,7 @@ then
 	cp --remove-destination "$(readlink game/bin/linuxsteamrt64/cs2)" game/bin/linuxsteamrt64/cs2
 fi
 
-game/bin/linuxsteamrt64/cs2 -dedicated $@`),
+game/cs2.sh -dedicated $@`),
 
 		`chmod +x srcds_run`,
 
