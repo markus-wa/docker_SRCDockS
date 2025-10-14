@@ -1,14 +1,14 @@
-FROM debian:bullseye-slim as entrypoint
+FROM registry.gitlab.steamos.cloud/steamrt/sniper/platform:latest-container-runtime-depot AS entrypoint
 
 RUN apt-get update \
-		&& apt-get install -y \
-			build-essential
+		&& apt-get install -y gcc g++
 
 COPY ./srcds/main.cpp ./
 RUN gcc -o main main.cpp
 
 
-FROM registry.gitlab.steamos.cloud/steamrt/sniper/platform
+FROM registry.gitlab.steamos.cloud/steamrt/sniper/platform:latest-container-runtime-depot
+ENV  DEBIAN_FRONTEND=noninteractive
 
 ENV APP_NAME=csgo
 ENV SRCDS_ARGS=""
@@ -26,22 +26,12 @@ ARG run_before_apt
 
 RUN $run_before_apt
 
-RUN apt-get update \
-		&& apt-get install -y --no-install-recommends --no-install-suggests \
-#			lib32gcc1 \
-			libicu67 \
-			lib32stdc++6 \
-			lib32z1 \
-#			procps \
-			ca-certificates \
-			netcat \
-			curl \
-			$apt_install_packages
+RUN apt update \
+		&& apt install -y tar curl jq gcc g++ iproute2 gdb telnet net-tools unzip expect netcat tzdata ca-certificates openssl locales \
+		&& apt clean \
+		&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /overlays
-
-# Cleanup
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /srcds
 
