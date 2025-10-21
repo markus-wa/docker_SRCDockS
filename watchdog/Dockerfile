@@ -36,7 +36,7 @@ ENV KEEPCOUNT=3
 
 RUN useradd -m -u $UID srcds
 RUN apt-get install -y --no-install-recommends --no-install-suggests \
-			lib32gcc1 \
+			lib32gcc-s1 \
 			rsync
 
 RUN apt-get clean autoclean \
