@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as node
+FROM debian:bullseye-slim AS node
 
 RUN dpkg --add-architecture i386 \
 		&& apt-get update \
