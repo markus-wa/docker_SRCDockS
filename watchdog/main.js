@@ -189,7 +189,7 @@ const downloadManager = new (class {
 				//"+@nCSClientRateLimitKbps", "0",
 				"+force_install_dir", `${appBaseDir}/latest`,
 				"+login", ...(process.env.STEAMCMD_LOGIN || "anonymous").split(" "),
-				"+app_update", downloadId, ...(process.env.STEAMCMD_UPDATE_ARGS || "validate").split(" "),
+				"+app_update", downloadId, ...(process.env.STEAMCMD_UPDATE_ARGS || "validate").trim().split(" "),
 				"+quit"
 			]);
 
