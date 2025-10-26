@@ -110,5 +110,5 @@ cd /srcds/srv
 
 loadLatestVersion
 loadCleanAddons
-addOverlays
 addCustomFiles
+addOverlays
